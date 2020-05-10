@@ -21,7 +21,7 @@ module.exports = {
       responseType: 'badRequest'
     },
     notFound: {
-        responseType: 'notFound'
+      responseType: 'notFound'
     }
   },
 
@@ -29,9 +29,15 @@ module.exports = {
   fn: async function (inputs, exits) {
 
     try {
-      let server = await SdtdServer.findOne(inputs.serverId);
-      let discordClient = sails.hooks.discordbot.getClient();
-      let chatBridgeHook = sails.hooks.discordchatbridge;
+      let server = await SdtdServer.findOne(inputs.serverId).populate('owner');
+      if (!server || !server.owner){
+        return exits.notFound()
+      }
+
+      let foundUser = server.owner;
+      if (!foundUser.discordId) {
+        return exits.notFound()
+      }
 
       if (inputs.discordGuildId === "0" ) {
         await SdtdConfig.update({
@@ -42,17 +48,11 @@ module.exports = {
         return exits.success();
       }
 
-      if (!discordClient.guilds.has(inputs.discordGuildId)) {
+      const client = sails.helpers.discord.getDiscordClient();
+      const foundGuilds = await client.getMutualGuilds(foundUser);
+      if (!foundGuilds.find(guild => guild.id === inputs.discordGuildId)) {
         return exits.badGuild();
       }
-
-      if (_.isUndefined(server)){
-        return exits.notFound()
-      }
-
-      if (chatBridgeHook.getStatus(inputs.serverId)) {
-        chatBridgeHook.stop(inputs.serverId);
-      } 
 
       await SdtdConfig.update({
         server: inputs.serverId

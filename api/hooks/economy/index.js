@@ -1,15 +1,12 @@
 const PlaytimeEarner = require('./objects/playtimeEarner');
 const DiscordTextEarner = require('./objects/discordTextEarner');
 const KillEarner = require('./objects/killEarner');
-const DiscordMessageHandler = require('./objects/discordMessageHandler');
 
 let playtimeEarnerMap = new Map();
 let discordTextEarnerMap = new Map();
 let killEarnerMap = new Map();
-let discordMessageEmitter;
 
 module.exports = function economy(sails) {
-
 
   return {
     initialize: function (cb) {
@@ -17,8 +14,6 @@ module.exports = function economy(sails) {
       sails.on('hook:sdtdlogs:loaded', async function () {
         sails.log.info('Initializing custom hook (`economy`)');
         cb();
-
-        discordMessageEmitter = new DiscordMessageHandler()
 
         let economyEnabledServers = await SdtdConfig.find({
           economyEnabled: true,

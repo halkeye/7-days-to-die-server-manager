@@ -92,6 +92,8 @@ module.exports = {
               id: req.session.userId
             }, {
                 discordId: discordProfile.id,
+                discordAccessToken: discordProfile.accessToken,
+                discordRefreshToken: discordProfile.refreshToken,
               });
             sails.log.debug(`User ${req.session.userId} updated discord info successfully`);
             res.redirect(`/user/${req.session.userId}/dashboard`);

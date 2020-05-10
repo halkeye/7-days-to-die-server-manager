@@ -34,15 +34,15 @@ module.exports = {
         break;
     }
 
-    let discordClient = sails.hooks.discordbot.getClient();
-    let developerGuild = discordClient.guilds.get(
+    let developerGuild = sails.helpers.discord.getDiscordClient().getGuild(
       sails.config.custom.donorConfig.devDiscordServer
     );
-    let discordUser = undefined;
 
-    if (_.isUndefined(developerGuild)) {
+    if (developerGuild) {
       return exits.success("free");
     }
+
+    let discordUser = undefined;
 
     if (_.isUndefined(inputs.serverId) && _.isUndefined(inputs.userId)) {
       throw new Error(`Usage error! Must give atleast one of the arguments`);

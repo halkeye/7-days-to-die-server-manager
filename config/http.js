@@ -56,7 +56,7 @@ passport.use(new SteamStrategy({
     return done(null, foundUser);
   } catch (error) {
     sails.log.warn(`Error during steam auth!`)
-    sails.log.error(error)
+    sails.log.error(`Error during steam auth!`, error)
     res.send(`Error during steam auth. This should never happen. Please contact someone on the dev server`)
   }
 
@@ -71,6 +71,8 @@ if (process.env.DISCORDCLIENTID && process.env.DISCORDCLIENTSECRET && process.en
     callbackURL: `${process.env.CSMM_HOSTNAME}/auth/discord/return`,
     scope: discordScopes
   }, async function (accessToken, refreshToken, profile, cb) {
+    profile.accessToken = accessToken;
+    profile.refreshToken = refreshToken;
     try {
       return cb(null, profile);
     } catch (error) {

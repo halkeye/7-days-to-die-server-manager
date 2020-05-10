@@ -32,6 +32,12 @@ module.exports = {
     discordId: {
       type: 'string'
     },
+    discordAccessToken: {
+      type: 'string'
+    },
+    discordRefreshToken: {
+      type: 'string'
+    },
 
     /**
      * @memberof User

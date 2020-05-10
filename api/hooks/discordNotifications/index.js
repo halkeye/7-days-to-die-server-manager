@@ -25,21 +25,17 @@ module.exports = function SdtdDiscordChatBridge(sails) {
      */
     initialize: async function (cb) {
 
-        sails.on('hook:discordbot:loaded', async function () {
-
-          let configs = await SdtdConfig.find({})
-          loadedNotifications = loadNotifications();
-          for (const serverConfig of configs) {
-            await sendNotification({
-              serverId: serverConfig.server,
-              notificationType: 'systemboot'
-            })
-          }
-
-          cb()
-        });
-
-     
+      sails.on("hook:sdtdlogs:loaded", async function() {
+        let configs = await SdtdConfig.find({})
+        loadedNotifications = loadNotifications();
+        for (const serverConfig of configs) {
+          sendNotification({
+            serverId: serverConfig.server,
+            notificationType: 'systemboot'
+          })
+        }
+        cb()
+      })
     },
 
     sendNotification: sendNotification,
@@ -93,7 +89,7 @@ module.exports = function SdtdDiscordChatBridge(sails) {
     if (!notificationOptions.notificationType) {
       throw new Error(`Must specify a notificationType in options`)
     }
-    
+
     try {
       let serverConfig = await SdtdConfig.findOne({server: notificationOptions.serverId})
         if (serverConfig.discordNotificationConfig[notificationOptions.notificationType]) {

@@ -33,29 +33,19 @@ module.exports = {
 
     try {
 
-      let discordClient = sails.hooks.discordbot.getClient();
-      let guild = discordClient.guilds.get(inputs.guildId);
-      if (_.isUndefined(guild)) {
-        return exits.success([]);
-      }
+      const client = sails.helpers.discord.getDiscordClient();
+      const foundChannelsArray = await client.getChannels(inputs.guildId); // FIXME - this will allow anyone to look up any guildId
 
-      let foundChannels = guild.channels.filter(channel => {
-        if (channel.type !== 'text') {
-          return false;
-        }
-        let userPerms = channel.permissionsFor(discordClient.user)
-        return (userPerms.has('SEND_MESSAGES') && userPerms.has('EMBED_LINKS') && userPerms.has('VIEW_CHANNEL'))
-      });
+      // let userPerms = channel.permissionsFor(discordClient.user)
+      // return (userPerms.has('SEND_MESSAGES') && userPerms.has('EMBED_LINKS') && userPerms.has('VIEW_CHANNEL'))
 
-      let foundChannelsArray = Array.from(foundChannels.values());
-
+      sails.log.debug(`API - SdtdServer:find-writeable-channels-in-guild - Found ${foundChannelsArray.length} channels for guild ${inputs.guildId}!`);
       exits.success(foundChannelsArray.map(channel => {
         return {
           id: channel.id,
           name: channel.name
         }
       }));
-      sails.log.debug(`API - SdtdServer:find-writeable-channels-in-guild - Found ${foundChannelsArray.length} channels for guild ${inputs.guildId}!`);
     } catch (error) {
       sails.log.error(`API - SdtdServer:find-writeable-channels-in-guild - ${error}`);
       return exits.error(error);
