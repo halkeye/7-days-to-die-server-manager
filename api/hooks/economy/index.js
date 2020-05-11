@@ -20,7 +20,7 @@ module.exports = function economy(sails) {
 
         discordMessageEmitter = new DiscordMessageHandler()
 
-        let economyEnabledServers = await SdtdConfig.find({
+        let economyEnabledServers = await SdtdConfig.findAll({
           economyEnabled: true,
           inactive: false,
         });

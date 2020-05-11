@@ -35,7 +35,7 @@ module.exports = function sdtdCommands(sails) {
         sails.log.info('Initializing custom hook (`sdtdCommands`)');
         cb();
         try {
-          let enabledServers = await SdtdConfig.find({
+          let enabledServers = await SdtdConfig.findAll({
             commandsEnabled: true,
             inactive: false,
           });

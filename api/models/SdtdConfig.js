@@ -27,10 +27,11 @@ module.exports = {
       });
   },
 
+	connection: 'sequalize',
   attributes: {
     //When a server does not respond to requests for a long time, it is set to inactive.
     inactive: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
@@ -44,12 +45,12 @@ module.exports = {
     //                                   |___/
 
     inventoryTracking: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
     locationTracking: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
@@ -63,85 +64,85 @@ module.exports = {
     //                                        |___/
 
     economyEnabled: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
     currencyName: {
-      type: "string",
+      type: Sequelize.STRING,
       defaultsTo: "dolla dolla billz"
     },
 
     killEarnerEnabled: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
     zombieKillReward: {
-      type: "number",
+      type: Sequelize.INTEGER,
       min: 0,
       defaultsTo: 1
     },
 
     playerKillReward: {
-      type: "number",
+      type: Sequelize.INTEGER,
       min: 0,
       defaultsTo: 20
     },
 
     playtimeEarnerEnabled: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
     playtimeEarnerInterval: {
-      type: "number",
+      type: Sequelize.INTEGER,
       defaultsTo: 5
     },
 
     playtimeEarnerAmount: {
-      type: "number",
+      type: Sequelize.INTEGER,
       defaultsTo: 1
     },
 
     discordTextEarnerEnabled: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
     discordTextEarnerAmountPerMessage: {
-      type: "number",
+      type: Sequelize.INTEGER,
       defaultsTo: 0.1
     },
 
     // How much seconds have to be between messages for a player to get rewarded
     discordTextEarnerTimeout: {
-      type: "number",
+      type: Sequelize.INTEGER,
       defaultsTo: 3
     },
 
     discordTextEarnerIgnoredChannels: {
-      type: "json",
-      defaultsTo: "[]"
+      type: Sequelize.JSON,
+      defaultsTo: []
     },
 
     costToTeleport: {
-      type: "number",
+      type: Sequelize.INTEGER,
       defaultsTo: 1
     },
 
     costToSetTeleport: {
-      type: "number",
+      type: Sequelize.INTEGER,
       defaultsTo: 15
     },
 
     costToMakeTeleportPublic: {
-      type: "number",
+      type: Sequelize.INTEGER,
       defaultsTo: 25
     },
 
     costToUseGimme: {
-      type: "number",
+      type: Sequelize.INTEGER,
       defaultsTo: 50
     },
 
@@ -160,7 +161,7 @@ module.exports = {
      */
 
     commandsEnabled: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
@@ -171,49 +172,49 @@ module.exports = {
      */
 
     commandPrefix: {
-      type: "string",
+      type: Sequelize.STRING,
       defaultsTo: "$"
     },
 
     enabledCallAdmin: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
     enabledPlayerTeleports: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: true
     },
 
     enabledWho: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
     enabledGimme: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
     maxPlayerTeleportLocations: {
-      type: "number",
+      type: Sequelize.INTEGER,
       defaultsTo: 3
     },
 
     playerTeleportDelay: {
-      type: "number",
+      type: Sequelize.INTEGER,
       defaultsTo: 15,
       min: 0
     },
 
     playerTeleportTimeout: {
-      type: "number",
+      type: Sequelize.INTEGER,
       defaultsTo: 60,
       min: 0
     },
 
     gimmeCooldown: {
-      type: "number",
+      type: Sequelize.INTEGER,
       defaultsTo: 30,
       min: 0
     },
@@ -226,7 +227,7 @@ module.exports = {
     // |_____/|_|___/\___\___/|_|  \__,_|
 
     discordPrefix: {
-      type: "string",
+      type: Sequelize.STRING,
       defaultsTo: "$"
     },
 
@@ -237,7 +238,7 @@ module.exports = {
      */
 
     discordGuildId: {
-      type: "string"
+      type: Sequelize.STRING
     },
 
     /**
@@ -247,7 +248,7 @@ module.exports = {
      */
 
     chatChannelId: {
-      type: "string"
+      type: Sequelize.STRING
     },
 
     /**
@@ -257,7 +258,7 @@ module.exports = {
      */
 
     chatChannelRichMessages: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: true
     },
 
@@ -268,7 +269,7 @@ module.exports = {
      */
 
     chatChannelGlobalOnly: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
@@ -279,12 +280,12 @@ module.exports = {
      */
 
     chatChannelBlockedPrefixes: {
-      type: "json",
+      type: Sequelize.JSON,
       defaultsTo: new Array("/", "!")
     },
 
     discordNotificationConfig: {
-      type: "json",
+      type: Sequelize.JSON,
       defaultsTo: {
         systemboot: "",
         playerConnected: "",
@@ -303,18 +304,18 @@ module.exports = {
 
     // How many bans a player must have before triggering the discord notification
     gblNotificationBans: {
-      type: "number",
+      type: Sequelize.INTEGER,
       defaultsTo: 3
     },
 
     gblAutoBanEnabled: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
     // How many bans a player must have before triggering the auto ban
     gblAutoBanBans: {
-      type: "number",
+      type: Sequelize.INTEGER,
       defaultsTo: 5
     },
 
@@ -335,7 +336,7 @@ module.exports = {
      */
 
     loggingEnabled: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: true
     },
 
@@ -347,7 +348,7 @@ module.exports = {
     // |_|  |_|_|___/\__\___/|_|  |_|\___\__,_|_| |_|_| |_|_| \___/
 
     memUpdateInfoEnabled: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: true
     },
 
@@ -367,7 +368,7 @@ module.exports = {
      */
 
     countryBanConfig: {
-      type: "json",
+      type: Sequelize.JSON,
       defaultsTo: {
         enabled: false,
         ban: false,
@@ -378,110 +379,113 @@ module.exports = {
       }
     },
 
-    /*   _____ _               _    _      _    
-        |  __ (_)             | |  (_)    | |   
+    /*   _____ _               _    _      _
+        |  __ (_)             | |  (_)    | |
         | |__) | _ __   __ _  | | ___  ___| | __
         |  ___/ | '_ \ / _` | | |/ / |/ __| |/ /
-        | |   | | | | | (_| | |   <| | (__|   < 
+        | |   | | | | | (_| | |   <| | (__|   <
         |_|   |_|_| |_|\__, | |_|\_\_|\___|_|\_\
-                        __/ |                   
+                        __/ |
                        |___/                     */
 
     pingKickEnabled: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
     maxPing: {
-      type: "number",
+      type: Sequelize.INTEGER,
       min: 1,
       defaultsTo: 150
     },
 
     pingChecksToFail: {
-      type: "number",
+      type: Sequelize.INTEGER,
       min: 1,
       defaultsTo: 3
     },
 
     pingKickMessage: {
-      type: "string",
+      type: Sequelize.STRING,
       defaultsTo: "Your ping is too high! Please check your connection."
     },
 
     pingWhitelist: {
-      type: "json",
+      type: Sequelize.JSON,
       defaultsTo: "[]"
     },
 
     /*
- __      __   _   _             
- \ \    / /  | | (_)            
-  \ \  / /__ | |_ _ _ __   __ _ 
+ __      __   _   _
+ \ \    / /  | | (_)
+  \ \  / /__ | |_ _ _ __   __ _
    \ \/ / _ \| __| | '_ \ / _` |
     \  / (_) | |_| | | | | (_| |
      \/ \___/ \__|_|_| |_|\__, |
                            __/ |
-                          |___/ 
+                          |___/
     */
 
     votingApiKey: {
-      type: "string",
+      type: Sequelize.STRING,
       defaultsTo: ""
     },
 
     votingEnabled: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
     votingCommand: {
-      type: "string",
+      type: Sequelize.STRING,
       defaultsTo:
         'say "${player.name} has just voted and received 50 ${server.config.currencyName}!"; addCurrency(${player.id}, 50)'
     },
 
     /*
 
-     ____                             _   _ _                     
-    |  _ \                           | | (_) |                    
-    | |_) | __ _ _ __  _ __   ___  __| |  _| |_ ___ _ __ ___  ___ 
+     ____                             _   _ _
+    |  _ \                           | | (_) |
+    | |_) | __ _ _ __  _ __   ___  __| |  _| |_ ___ _ __ ___  ___
     |  _ < / _` | '_ \| '_ \ / _ \/ _` | | | __/ _ \ '_ ` _ \/ __|
     | |_) | (_| | | | | | | |  __/ (_| | | | ||  __/ | | | | \__ \
     |____/ \__,_|_| |_|_| |_|\___|\__,_| |_|\__\___|_| |_| |_|___/
-                                                               
+
     */
 
     bannedItemsEnabled: {
-      type: "boolean",
+      type: Sequelize.BOOLEAN,
       defaultsTo: false
     },
 
     bannedItems: {
-      type: "json",
+      type: Sequelize.JSON,
       defaultsTo: []
     },
 
     bannedItemsCommand: {
-      type: "string",
+      type: Sequelize.STRING,
       defaultsTo:
         'kick ${player.steamId} "Unauthorized item detected in inventory"'
     },
-
-    //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-    //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
-    //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-
+  },
+  //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
+  //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
+  //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
+  associations: function () {
     /**
      * @var server
      * @description Server this config belongs to
      * @memberof SdtdConfig
      */
-
-    server: {
-      required: true,
-      //    unique: true,
-      model: "sdtdserver"
-    }
-  }
+    // SdtdConfig.hasOne(SdtdServer, { as: 'server', foreignKey: 'serverId' });
+  },
+	options : {
+		freezeTableName : false,
+		tableName       : 'sdtdconfig',
+		schema          : 'sails',
+		classMethods    : {},
+		instanceMethods : {},
+		hooks           : {}
+	}
 };

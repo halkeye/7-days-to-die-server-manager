@@ -5,7 +5,7 @@ module.exports = function banneditems(sails) {
     initialize: function(cb) {
       sails.on("hook:sdtdlogs:loaded", async function() {
         try {
-          let configs = await SdtdConfig.find({
+          let configs = await SdtdConfig.findAll({
             inactive: false
           });
 

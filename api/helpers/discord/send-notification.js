@@ -26,7 +26,7 @@ module.exports = {
   fn: async function (inputs, exits) {
       try {
           let server = await SdtdServer.findOne(inputs.serverId)
-          let config = await SdtdConfig.find({server: server.id}).limit(1);
+          let config = await SdtdConfig.findAll({server: server.id}).limit(1);
           config = config[0];
           let discordClient = sails.hooks.discordbot.getClient();
           let notificationChannel = discordClient.channels.get(config.notificationChannelId)

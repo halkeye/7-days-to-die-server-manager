@@ -160,7 +160,7 @@ module.exports = function discordBot(sails) {
 
 
 async function initializeGuildPrefixes() {
-  let serversWithDiscordEnabled = await SdtdConfig.find({
+  let serversWithDiscordEnabled = await SdtdConfig.findAll({
     discordGuildId: {
       '!=': ['']
     }

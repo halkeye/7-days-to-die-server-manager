@@ -23,7 +23,7 @@ class ChatBridgeChannel {
 
   async start() {
     try {
-      this.config = await SdtdConfig.find({
+      this.config = await SdtdConfig.findAll({
         server: this.sdtdServer.id
       }).limit(1);
       this.config = this.config[0];

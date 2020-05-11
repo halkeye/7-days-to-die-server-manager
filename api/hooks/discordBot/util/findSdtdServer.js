@@ -4,7 +4,7 @@ async function findSdtdServer(discordMessage) {
     let serverId = 0
     let foundServers = new Array();
 
-    let serversWithGuild = await SdtdConfig.find({ discordGuildId: discordGuild.id });
+    let serversWithGuild = await SdtdConfig.findAll({ discordGuildId: discordGuild.id });
     
     for (const serverConfig of serversWithGuild) {        
         let server = await SdtdServer.findOne(serverConfig.server);

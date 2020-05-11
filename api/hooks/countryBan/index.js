@@ -275,7 +275,7 @@ module.exports = function sdtdCountryBan(sails) {
     initialize: function(cb) {
       sails.on("hook:sdtdlogs:loaded", async function() {
         try {
-          let configs = await SdtdConfig.find({
+          let configs = await SdtdConfig.findAll({
             inactive: false
           });
 
@@ -419,7 +419,7 @@ module.exports = function sdtdCountryBan(sails) {
         `HOOK:countryBan - Player from ${country} connected to server ${server.name}, checking if needs to be kicked`,
         connectedMessage
       );
-      let config = await SdtdConfig.find({
+      let config = await SdtdConfig.findAll({
         server: server.id
       });
 

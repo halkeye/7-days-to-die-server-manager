@@ -17,7 +17,7 @@ async function handleRoleUpdate(oldMember, newMember) {
 }
 
 async function deleteCSMMRole(member, role) {
-  let serverConfigs = await SdtdConfig.find({
+  let serverConfigs = await SdtdConfig.findAll({
     discordGuildId: member.guild.id
   }).populate('server');
 
@@ -53,7 +53,7 @@ async function deleteCSMMRole(member, role) {
 
 async function addCSMMRole(member) {
 
-  let serverConfigs = await SdtdConfig.find({
+  let serverConfigs = await SdtdConfig.findAll({
     discordGuildId: member.guild.id
   }).populate('server');
 

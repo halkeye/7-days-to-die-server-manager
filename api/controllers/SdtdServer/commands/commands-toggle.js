@@ -44,7 +44,7 @@ module.exports = {
       let server = await SdtdServer.findOne({
         id: inputs.serverId
       });
-      let config = await SdtdConfig.find({
+      let config = await SdtdConfig.findAll({
         server: inputs.serverId
       });
 

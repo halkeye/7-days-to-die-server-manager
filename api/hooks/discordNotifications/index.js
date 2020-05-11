@@ -27,7 +27,7 @@ module.exports = function SdtdDiscordChatBridge(sails) {
 
         sails.on('hook:discordbot:loaded', async function () {
 
-          let configs = await SdtdConfig.find({})
+          let configs = await SdtdConfig.findAll({})
           loadedNotifications = loadNotifications();
           for (const serverConfig of configs) {
             await sendNotification({

@@ -33,21 +33,6 @@ let datastores = {
    ***************************************************************************/
 
   default: {
-
-    /***************************************************************************
-     *                                                                          *
-     * Want to use a different database during development?                     *
-     *                                                                          *
-     * 1. Choose an adapter:                                                    *
-     *    https://sailsjs.com/plugins/databases                                 *
-     *                                                                          *
-     * 2. Install it as a dependency of your Sails app.                         *
-     *    (For example:  npm install sails-mysql --save)                        *
-     *                                                                          *
-     * 3. Then pass it in, along with a connection URL.                         *
-     *    (See https://sailsjs.com/config/datastores for help.)                 *
-     *                                                                          *
-     ***************************************************************************/
     adapter: 'sails-disk',
     inMemoryOnly: true
   },
@@ -55,6 +40,27 @@ let datastores = {
     adapter: 'sails-disk',
     inMemoryOnly: true
   },
+  sequalize: {
+    database: './.tmp/db.sqlite3',
+    options: {
+      dialect: 'sqlite',
+      logging: 'verbose'
+    }
+  },
+  /*
+  somePostgresqlServer: {
+    user: 'postgres',
+    password: '',
+    database: 'sequelize',
+    dialect: 'postgres',
+    options: {
+      dialect: 'postgres',
+      host   : 'localhost',
+      port   : 5432,
+      logging: 'verbose'
+    }
+  },
+  */
 };
 
 module.exports.datastores = datastores;

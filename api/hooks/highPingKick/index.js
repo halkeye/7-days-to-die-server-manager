@@ -25,7 +25,7 @@ module.exports = function defineHighPingKickHook(sails) {
 
         sails.log.info('Initializing custom hook (`highPingKick`)');
 
-        let enabledConfigs = await SdtdConfig.find({
+        let enabledConfigs = await SdtdConfig.findAll({
           pingKickEnabled: true
         });
 

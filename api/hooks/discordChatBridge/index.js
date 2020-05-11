@@ -31,7 +31,7 @@ module.exports = function SdtdDiscordChatBridge(sails) {
 
         discordClient.on('ready', async () => {
           try {
-            let enabledServers = await SdtdConfig.find({
+            let enabledServers = await SdtdConfig.findAll({
               inactive: false,
               or: [{
                 chatChannelId: {
@@ -102,7 +102,7 @@ module.exports = function SdtdDiscordChatBridge(sails) {
     try {
       sails.log.debug(`HOOK SdtdDiscordChatBridge:start - Starting chatbridge for server ${serverId}`);
       let discordClient = sails.hooks.discordbot.getClient();
-      let config = await SdtdConfig.find({
+      let config = await SdtdConfig.findAll({
         server: serverId
       }).limit(1);
 
